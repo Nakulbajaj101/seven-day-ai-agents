@@ -1,5 +1,6 @@
 import argparse
 import io
+import re
 import zipfile
 
 import frontmatter
@@ -108,7 +109,7 @@ class OpenAIClient:
 
 class IntelligentChunking(OpenAIClient):
     def __init__(self, openai_model):
-        super().__init__(self, model=openai_model)
+        super().__init__(model=openai_model)
     
     def intelligent_chunking(self, text):
         prompt = prompt_template.format(document=text)
