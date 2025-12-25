@@ -6,7 +6,9 @@ import zipfile
 import frontmatter
 import requests
 from config import prompt_template
-from openai import OpenAI
+from openai import APIConnectionError, APIStatusError, OpenAI, RateLimitError
+from tenacity import (retry, retry_if_exception_type, stop_after_attempt,
+                      wait_random_exponential)
 from tqdm.auto import tqdm
 
 
@@ -95,6 +97,11 @@ class OpenAIClient:
         self.model = model
         self._client = OpenAI()
 
+    @retry(
+    wait=wait_random_exponential(multiplier=1, max=60),
+    stop=stop_after_attempt(max_attempt_number=5),
+    retry=retry_if_exception_type((APIConnectionError, RateLimitError, APIStatusError))
+    )
     def llm(self, prompt):
         messages = [
         {"role": "user", "content": prompt}
