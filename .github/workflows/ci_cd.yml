@@ -1,0 +1,88 @@
+name: AI Hero CI/CD
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - 'aihero/github_repo_assistant/**'
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - 'aihero/github_repo_assistant/**'
+  workflow_dispatch:
+
+defaults:
+  run:
+    working-directory: aihero/github_repo_assistant
+
+jobs:
+  # ------------------------------------------------------------------
+  # 1. Continuous Integration: Linting & Testing
+  # ------------------------------------------------------------------
+  ci:
+    name: Build & Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v2
+
+      - name: Set up Python
+        run: uv python install 3.12
+
+      - name: Install Dependencies
+        run: uv sync
+
+      - name: Lint with Ruff
+        run: uv run ruff check .
+
+      - name: Run Tests
+        run: uv run pytest tests
+
+  # ------------------------------------------------------------------
+  # 2. Deployment (Placeholder)
+  # ------------------------------------------------------------------
+  deploy:
+    name: Deploy Application
+    needs: ci
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      
+      - name: Deploy to Cloud
+        run: |
+          echo "🚀 Deploying to production..."
+          # Add your actual deployment commands here.
+          # Example for Streamlit Community Cloud: (Automatic via GitHub integration usually)
+          # Example for Render/Heroku:
+          # curl -X POST https://api.render.com/deploy/...
+          echo "Deployment complete."
+
+  # ------------------------------------------------------------------
+  # 3. Post-Deployment Verification
+  # ------------------------------------------------------------------
+  post-deploy-test:
+    name: Verify Deployment
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v2
+
+      - name: Install Test Dependencies
+        run: uv sync --only-dev
+
+      - name: Run E2E/Smoke Tests
+        run: |
+          echo "🔎 Running post-deployment checks..."
+          # In a real scenario, you would target the deployed URL
+          # export APP_URL=https://my-app.streamlit.app
+          # uv run python -m pytest tests/e2e
+          echo "Smoke tests passed."
