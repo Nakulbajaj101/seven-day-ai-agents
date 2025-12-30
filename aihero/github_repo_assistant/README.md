@@ -13,7 +13,10 @@ A powerful Agentic RAG application that allows you to chat with any GitHub repos
 - 🧠 **Context Aware**: Understands the structure of the documentation.
 - 🔗 **Citable**: Always links back to the source file.
 
-*(Placeholder for Screenshot/GIF)*
+![Main Interface](assets/main_screenshot.png)
+
+## 🎥 30s Demo
+![Demo](assets/demo.webp)
 
 ## 2. Installation
 
@@ -76,6 +79,7 @@ This project comes with a built-in evaluation tool to assess the quality of answ
    ```bash
    uv run streamlit run evaluation_app.py
    ```
+   ![Evaluation Dashboard](assets/eval_dashboard.png)
 
 ## 4. Features
 
