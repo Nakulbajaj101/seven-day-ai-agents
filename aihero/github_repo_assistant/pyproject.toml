@@ -1,7 +1,7 @@
 [project]
 name = "github-repo-assistant"
 version = "0.1.0"
-description = "Add your description here"
+description = "A powerful Agentic RAG application that allows you to chat with any GitHub repository's documentation"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
