@@ -979,7 +979,9 @@ multidict==6.7.0 \
 narwhals==2.14.0 \
     --hash=sha256:98be155c3599db4d5c211e565c3190c398c87e7bf5b3cdb157dece67641946e0 \
     --hash=sha256:b56796c9a00179bd757d15282c540024e1d5c910b19b8c9944d836566c030acf
-    # via altair
+    # via
+    #   altair
+    #   plotly
 nexus-rpc==1.2.0 \
     --hash=sha256:977876f3af811ad1a09b2961d3d1ac9233bda43ff0febbb0c9906483b9d9f8a3 \
     --hash=sha256:b4ddaffa4d3996aaeadf49b80dfcdfbca48fe4cb616defaf3b3c5c2c8fc61890
@@ -1122,6 +1124,7 @@ packaging==25.0 \
     #   altair
     #   huggingface-hub
     #   opentelemetry-instrumentation
+    #   plotly
     #   streamlit
 pandas==2.3.3 \
     --hash=sha256:0242fe9a49aa8b4d78a4fa03acb397a58833ef6199e9aa40a95f027bb3a1b6e7 \
@@ -1159,6 +1162,7 @@ pandas==2.3.3 \
     --hash=sha256:ee67acbbf05014ea6c763beb097e03cd629961c8a632075eeb34247120abcb4b \
     --hash=sha256:f8bfc0e12dc78f777f323f55c58649591b2cd0c43534e8355c51d3fede5f4dee
     # via
+    #   github-repo-assistant
     #   minsearch
     #   streamlit
 pathable==0.4.4 \
@@ -1237,6 +1241,10 @@ platformdirs==4.5.1 \
     --hash=sha256:61d5cdcc6065745cdd94f0f878977f8de9437be93de97c1c12f853c9c0cdcbda \
     --hash=sha256:d03afa3963c806a9bed9d5125c8f4cb2fdaf74a55ab60e5d59b3fde758104d31
     # via fastmcp
+plotly==6.5.0 \
+    --hash=sha256:5ac851e100367735250206788a2b1325412aa4a4917a4fe3e6f0bc5aa6f3d90a \
+    --hash=sha256:d5d38224883fd38c1409bef7d6a8dc32b74348d39313f3c52ca998b8e447f5c8
+    # via github-repo-assistant
 prometheus-client==0.23.1 \
     --hash=sha256:6ae8f9081eaaaf153a2e959d2e6c4f4fb57b12ef76c8c7980202f1e57b48b2ce \
     --hash=sha256:dd1913e6e76b59cfe44e7a4b83e01afc9873c1bdfd2ed8739f1e76aeca115f99
@@ -2051,6 +2059,7 @@ tqdm==4.67.1 \
     --hash=sha256:26445eca388f82e72884e0d580d5464cd801a3ea01e63e5601bdff9ba6a48de2 \
     --hash=sha256:f8aef9c52c08c13a65f30ea34f4e5aac3fd1a34959879d7e59e63027286627f2
     # via
+    #   github-repo-assistant
     #   huggingface-hub
     #   openai
 typer==0.21.0 \

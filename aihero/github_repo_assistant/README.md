@@ -1,78 +1,152 @@
-# GitHub Repo Assistant 🤖
+# GitHub Repo Assistant
 
-An advanced Agentic RAG application that allows you to chat with any public GitHub repository's documentation as if it were a knowledgeable pair programmer.
+A powerful Agentic RAG application that allows you to chat with any GitHub repository's documentation.
 
-## 🌟 Features
+![Build Status](https://img.shields.io/badge/build-passing-brightgreen) ![License](https://img.shields.io/badge/license-MIT-blue) ![Python](https://img.shields.io/badge/python-3.12%2B-blue)
 
-- **Instant Indexing**: Automatically downloads, parses, and indexes markdown/text files from a public GitHub repository.
-- **Agentic RAG**: Powered by `pydantic-ai` and `MinSearch` for accurate retrieval and context-aware answers.
-- **Modern UI**: A clean, Gemini-inspired Streamlit interface with a light theme and enhanced readability.
-- **History Aware**: Maintains context across your conversation session.
-- **Source Citations**: Provides links back to the original source files in GitHub.
+## 1. Overview
 
-## 🚀 Getting Started
+**GitHub Repo Assistant** solves the problem of navigating complex codebases. Instead of manually searching through endless markdown files, you can simply ask questions. It scrapes a repository, builds a local index, and uses an AI agent to provide context-aware answers with citations.
 
-### Prerequisites
+**Why it's useful:**
+- ⚡️ **Instant Answers**: Stop `ctrl+f` searching.
+- 🧠 **Context Aware**: Understands the structure of the documentation.
+- 🔗 **Citable**: Always links back to the source file.
 
-- Python 3.12+
-- [uv](https://github.com/astral-sh/uv) (Recommended for package management)
-- OpenAI API Key
+*(Placeholder for Screenshot/GIF)*
 
-### Installation
+## 2. Installation
 
-1.  **Clone the repository** (if you haven't already):
-    ```bash
-    git clone <repository_url>
-    cd github_repo_assistant
-    ```
+### Requirements
+- **Python**: 3.12 or higher
+- **Operating System**: macOS / Linux / Windows
+- **API Key**: OpenAI API Key
 
-2.  **Install Dependencies**:
+### Step-by-Step Guide
+1. **Clone the repository**:
+   ```bash
+   git clone <repository_url>
+   cd github_repo_assistant
+   ```
 
-    Using `uv` (Fast & Recommended):
-    ```bash
-    uv sync
-    ```
+2. **Install Dependencies**:
+   We recommend using `uv` for fast dependency management, but `pip` works too.
 
-    Using standard `pip`:
-    ```bash
-    pip install -r requirements.txt
-    ```
+   **Using uv (Recommended):**
+   ```bash
+   uv sync
+   ```
 
-### ▶️ Running the Application
+   **Using pip:**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-1.  **Set up Credentials** (Optional but recommended):
-    ```bash
-    export OPENAI_API_KEY="sk-..."
-    ```
-    *Note: You can also enter the key in the specific sidebar input field if you prefer not to use environment variables.*
+## 3. Usage
 
-2.  **Launch the App**:
-    ```bash
-    uv run streamlit run main.py
-    ```
-    *Or with standard python:*
-    ```bash
-    streamlit run main.py
-    ```
+### Running Locally
+To start the application, run the Streamlit server:
 
-3.  **Access**:
-    Open your browser to `http://localhost:8501`.
+```bash
+# Using uv
+uv run streamlit run main.py
 
-## 🧪 Running Tests
+# Using standard python
+streamlit run main.py
+```
 
-This project uses `pytest` for testing. The test suite covers ingestion logic and agent history persistence.
+### How to Use
+1. Open your browser to `http://localhost:8501`.
+2. In the Sidebar, enter the **Repo Owner** (e.g., `evidentlyai`) and **Repo Name** (e.g., `docs`).
+3. (Optional) Enter your OpenAI API Key if not set in your environment.
+4. Click **Index Repository**.
+5. Ask questions like "How do I install the package?" or "Explain the core architecture."
 
-To run the full test suite:
+### 📊 Evaluation Dashboard
+This project comes with a built-in evaluation tool to assess the quality of answers.
 
+1. **Run the Evaluation Pipeline**:
+   This processes logs in `evaluation_data/` using an LLM Judge (gpt-5-nano).
+   ```bash
+   uv run python evaluation.py
+   ```
+
+2. **View Results**:
+   Launch the dedicated dashboard to visualize pass rates and inspect logs.
+   ```bash
+   uv run streamlit run evaluation_app.py
+   ```
+
+## 4. Features
+
+- **Agentic RAG**: Powered by `pydantic-ai` for robust agent loops.
+- **Local Indexing**: Uses `MinSearch` for fast, in-memory text search.
+- **History Memory**: Remembers context from previous turn in the conversation.
+- **Rich UI**: Gemini-inspired interface with dark/light mode support.
+- **Source Citations**: Every answer includes links to the GitHub files used.
+- **Evaluation Dashboard**: Built-in LLM Judge to benchmark answer quality against logged interactions.
+
+## 5. Contributing
+
+Contributions are welcome! Please follow these steps:
+1. Fork the project.
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`).
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`).
+4. Push to the branch (`git push origin feature/AmazingFeature`).
+5. Open a Pull Request.
+
+**Coding Standards**:
+- We use `pytest` for testing.
+- Please ensure all new features are covered by tests.
+
+## 6. Tests
+
+We use `pytest` for unit and integration testing.
+
+**Run all tests:**
 ```bash
 uv run python -m pytest tests
 ```
 
-## 📂 Project Structure
+**Run specific test file:**
+```bash
+uv run python -m pytest tests/test_ingest.py
+```
 
-- `main.py`: The entry point for the Streamlit web application.
-- `ingest.py`: Core logic for scraping GitHub and building the search index.
-- `search_agent.py`: Definition of the AI agent, its system prompts, and tools.
-- `search_tools.py`: Interface between the Agent and the MinSearch index.
-- `logs.py`: Utilities for logging user interactions.
-- `tests/`: Contains unit and integration tests.
+## 7. Deployment
+
+This application is built with Streamlit and is ready for deployment on:
+- **Streamlit Cloud**: Simply connect your GitHub repo and set the `OPENAI_API_KEY` secret.
+- **Docker**: Can be containerized (Dockerfile coming soon).
+
+## 8. FAQ / Troubleshooting
+
+**Q: I get an OpenAI Authentication Error.**
+A: Ensure your `OPENAI_API_KEY` is set correctly in the sidebar or your environment variables (`export OPENAI_API_KEY=sk-...`).
+
+**Q: The indexing takes a long time.**
+A: Large repositories with many text files may take a minute to download and chunk. Check the terminal for progress logs.
+
+## 9. Credits
+
+- **Streamlit**: For the frontend framework.
+- **Pydantic AI**: For the agentic framework.
+- **MinSearch**: For the lightweight search engine.
+
+## 11. Project Structure
+
+A professional, modular architecture designed for scalability and maintainability.
+
+```
+github_repo_assistant/
+├── main.py              # 🚀 Entry point for the RAG Chatbot
+├── evaluation.py        # ⚖️ Evaluation pipeline (LLM Judge)
+├── evaluation_app.py    # 📊 Dashboard for visualizing evaluation results
+├── ingest.py            # 📥 Data ingestion and indexing logic
+├── search_agent.py      # 🤖 Agent definition and logic
+├── search_tools.py      # 🔍 Search engine integration tools
+├── config.py            # ⚙️ Centralized configuration and prompts
+├── logs.py              # 📝 Logging utilities
+├── requirements.txt     # 📦 Dependency definitions
+└── tests/               # 🧪 Unit and integration tests
+```

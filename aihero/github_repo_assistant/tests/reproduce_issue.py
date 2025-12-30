@@ -1,6 +1,8 @@
 import asyncio
-from ingest import index_data
+
 from minsearch import Index
+
+from ingest import index_data
 
 # Mock the minsearch behavior or just run index_data with a small known problematic input if we knew it.
 # Instead, let's try to index a dummy doc that definitely has the keys, and see if it works.

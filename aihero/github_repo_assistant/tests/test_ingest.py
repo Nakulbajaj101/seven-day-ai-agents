@@ -1,6 +1,8 @@
 import unittest
-from unittest.mock import patch, MagicMock
+from unittest.mock import MagicMock, patch
+
 from ingest import index_data
+
 
 class TestIngest(unittest.TestCase):
     

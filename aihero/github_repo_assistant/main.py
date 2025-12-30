@@ -2,6 +2,7 @@ import asyncio
 import os
 
 import streamlit as st
+
 from ingest import index_data
 from logs import log_interaction
 from search_agent import init_agent

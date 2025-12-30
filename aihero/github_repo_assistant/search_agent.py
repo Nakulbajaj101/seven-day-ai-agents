@@ -1,5 +1,6 @@
 from minsearch import Index
 from pydantic_ai import Agent
+
 from search_tools import SearchTool
 
 SYSTEM_PROMPT_TEMPLATE = """
