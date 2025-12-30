@@ -1,17 +1,12 @@
-import os
-from pathlib import Path
-from unittest.mock import AsyncMock, MagicMock, patch
+from unittest.mock import AsyncMock, MagicMock
 
-import pandas as pd
 import pytest
 
 from evaluation import (
-    EVALUATION_SYSTEM_PROMPT,
     EvaluationCheck,
     EvaluationChecklist,
     build_evaluations_df,
     get_eval_data,
-    load_log_data,
     simplify_log_messages,
 )
 
@@ -55,8 +50,8 @@ def test_build_evaluations_df():
     
     assert len(df) == 1
     assert df.iloc[0]['log_file'] == "test_log.json"
-    assert df.iloc[0]['test_pass'] == True
-    assert df.iloc[0]['test_fail'] == False
+    assert df.iloc[0]['test_pass']
+    assert not df.iloc[0]['test_fail']
 
 # Integration-like tests with mocks
 @pytest.mark.asyncio
@@ -82,7 +77,7 @@ async def test_evaluation_flow():
     result = await evaluate_log_record(mock_agent, log_record)
     
     assert result.checks[0].check_name == "relevant"
-    assert result.checks[0].check_pass == True
+    assert result.checks[0].check_pass
 
 def test_data_loading_filtering(tmp_path):
     # Create dummy json files

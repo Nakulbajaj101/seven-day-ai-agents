@@ -121,7 +121,7 @@ else:
         display_df = df
         if selected_checks:
             for check in selected_checks:
-                display_df = display_df[display_df[check] == False]
+                display_df = display_df[~display_df[check]]
         
         st.dataframe(
             display_df,
