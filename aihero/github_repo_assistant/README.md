@@ -137,7 +137,7 @@ A: Large repositories with many text files may take a minute to download and chu
 - **Pydantic AI**: For the agentic framework.
 - **MinSearch**: For the lightweight search engine.
 
-## 11. Project Structure
+## 10. Project Structure
 
 A professional, modular architecture designed for scalability and maintainability.
 
@@ -154,3 +154,7 @@ github_repo_assistant/
 ├── requirements.txt     # 📦 Dependency definitions
 └── tests/               # 🧪 Unit and integration tests
 ```
+
+## 11. License
+
+Distributed under the MIT License. See `LICENSE` for more information.
