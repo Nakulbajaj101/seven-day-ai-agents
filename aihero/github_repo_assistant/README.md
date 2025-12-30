@@ -1,44 +1,78 @@
-# GitHub Repo Assistant
+# GitHub Repo Assistant 🤖
 
-An Agentic RAG application that allows you to chat with any GitHub repository's documentation.
+An advanced Agentic RAG application that allows you to chat with any public GitHub repository's documentation as if it were a knowledgeable pair programmer.
 
-## Features
-- **Index GitHub Repos**: Automatically downloads and indexes markdown files from a public GitHub repository.
-- **Agentic RAG**: Uses MinSearch for retrieval and OpenAI's GPT-4o-mini for answering questions.
-- **Interactive UI**: Built with Streamlit for a smooth user experience.
+## 🌟 Features
 
-## Setup
+- **Instant Indexing**: Automatically downloads, parses, and indexes markdown/text files from a public GitHub repository.
+- **Agentic RAG**: Powered by `pydantic-ai` and `MinSearch` for accurate retrieval and context-aware answers.
+- **Modern UI**: A clean, Gemini-inspired Streamlit interface with a light theme and enhanced readability.
+- **History Aware**: Maintains context across your conversation session.
+- **Source Citations**: Provides links back to the original source files in GitHub.
 
-1. **Install Dependencies**:
-   Ensure you have Python 3.12+ installed.
-   ```bash
-   # Using uv (recommended)
-   uv sync
+## 🚀 Getting Started
 
-   # Or using pip
-   pip install -e .
-   ```
+### Prerequisites
 
-2. **Environment Variables**:
-   Set your OpenAI API Key:
-   ```bash
-   export OPENAI_API_KEY="sk-..."
-   ```
-   Alternatively, you can enter the API Key directly in the application sidebar.
+- Python 3.12+
+- [uv](https://github.com/astral-sh/uv) (Recommended for package management)
+- OpenAI API Key
 
-3. **Run the App**:
-   ```bash
-   streamlit run main.py
-   ```
+### Installation
 
-## Usage
-1. Open the app in your browser (usually `http://localhost:8501`).
-2. Enter the **Repo Owner** and **Repo Name** (e.g., `evidentlyai` / `docs`).
-3. Click **Index Repository**.
-4. Start chatting!
+1.  **Clone the repository** (if you haven't already):
+    ```bash
+    git clone <repository_url>
+    cd github_repo_assistant
+    ```
 
-## Architecture
-- `main.py`: Streamlit frontend application.
-- `ingest.py`: Handles downloading and indexing of repository content.
-- `search_agent.py`: Configures the AI agent.
-- `search_tools.py`: Connects MinSearch with the agent.
+2.  **Install Dependencies**:
+
+    Using `uv` (Fast & Recommended):
+    ```bash
+    uv sync
+    ```
+
+    Using standard `pip`:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+### ▶️ Running the Application
+
+1.  **Set up Credentials** (Optional but recommended):
+    ```bash
+    export OPENAI_API_KEY="sk-..."
+    ```
+    *Note: You can also enter the key in the specific sidebar input field if you prefer not to use environment variables.*
+
+2.  **Launch the App**:
+    ```bash
+    uv run streamlit run main.py
+    ```
+    *Or with standard python:*
+    ```bash
+    streamlit run main.py
+    ```
+
+3.  **Access**:
+    Open your browser to `http://localhost:8501`.
+
+## 🧪 Running Tests
+
+This project uses `pytest` for testing. The test suite covers ingestion logic and agent history persistence.
+
+To run the full test suite:
+
+```bash
+uv run python -m pytest tests
+```
+
+## 📂 Project Structure
+
+- `main.py`: The entry point for the Streamlit web application.
+- `ingest.py`: Core logic for scraping GitHub and building the search index.
+- `search_agent.py`: Definition of the AI agent, its system prompts, and tools.
+- `search_tools.py`: Interface between the Agent and the MinSearch index.
+- `logs.py`: Utilities for logging user interactions.
+- `tests/`: Contains unit and integration tests.
