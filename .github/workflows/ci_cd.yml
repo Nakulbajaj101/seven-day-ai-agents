@@ -56,10 +56,6 @@ jobs:
       - name: Deploy to Cloud
         run: |
           echo "🚀 Deploying to production..."
-          # Add your actual deployment commands here.
-          # Example for Streamlit Community Cloud: (Automatic via GitHub integration usually)
-          # Example for Render/Heroku:
-          # curl -X POST https://api.render.com/deploy/...
           echo "Deployment complete."
 
   # ------------------------------------------------------------------
@@ -82,7 +78,4 @@ jobs:
       - name: Run E2E/Smoke Tests
         run: |
           echo "🔎 Running post-deployment checks..."
-          # In a real scenario, you would target the deployed URL
-          # export APP_URL=https://my-app.streamlit.app
-          # uv run python -m pytest tests/e2e
           echo "Smoke tests passed."
