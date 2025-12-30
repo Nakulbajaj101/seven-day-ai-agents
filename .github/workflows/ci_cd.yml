@@ -22,6 +22,8 @@ jobs:
   ci:
     name: Build & Test
     runs-on: ubuntu-latest
+    env:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -39,15 +41,15 @@ jobs:
         run: uv run ruff check .
 
       - name: Run Tests
-        run: uv run pytest tests
+        run: uv run python -m pytest tests
 
   # ------------------------------------------------------------------
-  # 2. Deployment (Placeholder)
+  # 2. Deployment (Runs only on merge/push to main)
   # ------------------------------------------------------------------
   deploy:
     name: Deploy Application
     needs: ci
-    if: github.ref == 'refs/heads/main'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
